@@ -1,0 +1,4 @@
+*              # ignore everything ...
+!.gitignore    # exepct this file
+!.spacemacs    # and spacemacs config
+!README.md     # and the readme
