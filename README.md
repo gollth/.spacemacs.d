@@ -1,7 +1,8 @@
-# spacemacs-config
+# Spacemacs Config
 My general customization for Spacemacs
 
 ## Setup
 ```
-$ echo alias home='git --work-tree=$HOME --git-dir=$HOME/.home' >> ~/.bash_aliases
+$ git clone http://github.com/gollth/.spacemacs.d
+$ ln ~/.spacemacs.d/.spacemacs ~/.spacemacs
 ```
