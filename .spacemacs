@@ -2,6 +2,15 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
+
+;; No Line Wraps
+(add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t)))
+
+;; Default python interpreter
+(setq python-shell-interpreter "ipython3")
+(setq python-shell-interpreter-args "--classic --no-banner --pprint")
+
+
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
@@ -41,11 +50,11 @@ values."
      (haskell :variables haskell-completion-backend 'intero)
      python
      markdown
+     yaml
      emacs-lisp
      auto-completion
      better-defaults
      git
-     ;; org
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -55,7 +64,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(helm-ros)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -84,7 +93,7 @@ values."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
-   dotspacemacs-elpa-https nil
+   dotspacemacs-elpa-https t
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 5
    ;; If non nil then spacemacs will check for updates at startup
@@ -301,6 +310,12 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  ;;(define-key global-map (kbd "SPC y y") #'helm-ros)
+;;  (define-key global-map (kbd "SPC y t t") #'helm-ros-topics)
+;;  (define-key global-map (kbd "SPC y t t") #'helm-ros-topics)
+;;  (define-key global-map (kbd "SPC y t z") #'helm-rostopics-hz)
+
   )
 
 (defun dotspacemacs/user-config ()
@@ -310,7 +325,38 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+  ;; ROS shortcut
+  (spacemacs/declare-prefix "y" "ROS")
+  (spacemacs/set-leader-keys "yy" 'helm-ros)
+
+  (spacemacs/declare-prefix "yt" "ROS topics")
+  (spacemacs/set-leader-keys "ytt" 'helm-ros-topics)
+  (spacemacs/set-leader-keys "ytz" 'helm-ros-rostopic-hz)
+  (spacemacs/set-leader-keys "yti" 'helm-ros-rostopic-info)
+
+  (spacemacs/declare-prefix "yn" "ROS nodes")
+  (spacemacs/set-leader-keys "yni" 'helm-ros-rosnode-info)
+  (spacemacs/set-leader-keys "ynn" 'helm-ros-rosnode-list)
+  (spacemacs/set-leader-keys "ynd" 'helm-ros-kill-node)
+  (spacemacs/set-leader-keys "ynr" 'helm-ros-run-node)
+
+  (spacemacs/set-leader-keys "ym" 'helm-ros-set-master-uri)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (spacemacs-theme helm-ros helm-company helm-c-yasnippet fuzzy company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic yaml-mode smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit ghub with-editor xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help mmm-mode markdown-toc markdown-mode gh-md ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
