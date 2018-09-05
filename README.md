@@ -13,9 +13,11 @@ $ ln ~/.spacemacs.d/.spacemacs ~/.spacemacs
 - python
 - markdown
 - haskell
+- C#
 
 
 ### Misc
 - helm
 - autocompletion
 - syntax checking
+- git
