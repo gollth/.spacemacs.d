@@ -43,9 +43,13 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
+     debug
+     org
      ;; LANGUAGES
      (haskell :variables haskell-completion-backend 'intero)
+     javascript
      python
+     html
      markdown
      yaml
      emacs-lisp
@@ -53,6 +57,10 @@ values."
      better-defaults
      git
      csharp
+     web
+     '((c-c++ :variables
+              c-c++-default-mode-for-headers 'c++-mode
+              c-c++-enable-clang-support t))
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
