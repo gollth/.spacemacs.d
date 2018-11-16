@@ -4,7 +4,7 @@ My general customization for Spacemacs
 ## Setup
 ```
 $ git clone http://github.com/gollth/.spacemacs.d
-$ ln ~/.spacemacs.d/.spacemacs ~/.spacemacs
+$ ln -s ~/.spacemacs.d/.spacemacs ~/.spacemacs
 ```
 
 ## Layers
