@@ -14,10 +14,16 @@ $ ln -s ~/.spacemacs.d/.spacemacs ~/.spacemacs
 - markdown
 - haskell
 - C#
-
+- haskell
+- javascript
+- html
+- yaml
+    
 
 ### Misc
 - helm
 - autocompletion
 - syntax checking
 - git
+- org
+- shell
