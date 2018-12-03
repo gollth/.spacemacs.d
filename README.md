@@ -3,7 +3,7 @@ My general customization for Spacemacs
 
 ## Setup
 ```
-$ git clone http://github.com/gollth/.spacemacs.d
+$ git clone http://github.com/gollth/.spacemacs.d ~/.spacemacs.d
 $ ln -s ~/.spacemacs.d/.spacemacs ~/.spacemacs
 ```
 
@@ -18,6 +18,7 @@ $ ln -s ~/.spacemacs.d/.spacemacs ~/.spacemacs
 - javascript
 - html
 - yaml
+- JS(X)
     
 
 ### Misc
@@ -27,3 +28,4 @@ $ ln -s ~/.spacemacs.d/.spacemacs ~/.spacemacs
 - git
 - org
 - shell
+- react
