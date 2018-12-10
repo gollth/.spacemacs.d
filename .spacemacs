@@ -2,6 +2,8 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
+(add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t)))
+
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
@@ -36,29 +38,39 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+
+     ;; FRAMEWORKS
+     helm
+     debug
+     (org :variables org-want-todo-bindings t)
+     search-engine
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
+     react
+     ;; LANGUAGES
+     (haskell :variables haskell-completion-backend 'intero)
+     javascript
+     python
+     html
+     markdown
      yaml
+     emacs-lisp
+     better-defaults
      python
      helm
      git
+     csharp
+     '((c-c++ :variables
+              c-c++-default-mode-for-headers 'c++-mode
+              c-c++-enable-clang-support t))
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'complete
                       auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay 0.1
                       auto-completion-private-snippets-directory nil)
-     (c-c++ :variables
-            c-c++-enable-clang-support t
-            c-c++-default-mode-for-headers 'c++-mode
-            )
-     emacs-lisp
-     markdown
-     (org :variables org-want-todo-bindings t)
-     search-engine
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
-     (c-c++ :variables c-c++-enable-clang-support t)
-     ;; spell-checking
+     syntax-checking
      ycmd
      (syntax-checking :variables syntax-checking-enable-by-default nil)
      version-control
@@ -67,7 +79,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(helm-ros)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -146,10 +158,10 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 15
+                               :size 13
                                :weight normal
                                :width normal
-                               :powerline-scale 1.3)
+                               :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -313,14 +325,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (setq-default
-   dotspacemacs-themes '(
-                         darkokai
-                         zenburn
-                         planet
-   ;; other themes
-                        ))
-)
+  )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -334,6 +339,22 @@ you should place your code here."
   (setq browse-url-browser-function 'browse-url-generic
         engine/browser-function 'browse-url-generic
         browse-url-generic-program "firefox")
+  ;; ROS shortcut
+  (spacemacs/declare-prefix "y" "ROS")
+  (spacemacs/set-leader-keys "yy" 'helm-ros)
+
+  (spacemacs/declare-prefix "yt" "ROS topics")
+  (spacemacs/set-leader-keys "ytt" 'helm-ros-topics)
+  (spacemacs/set-leader-keys "ytz" 'helm-ros-rostopic-hz)
+  (spacemacs/set-leader-keys "yti" 'helm-ros-rostopic-info)
+
+  (spacemacs/declare-prefix "yn" "ROS nodes")
+  (spacemacs/set-leader-keys "yni" 'helm-ros-rosnode-info)
+  (spacemacs/set-leader-keys "ynn" 'helm-ros-rosnode-list)
+  (spacemacs/set-leader-keys "ynd" 'helm-ros-kill-node)
+  (spacemacs/set-leader-keys "ynr" 'helm-ros-run-node)
+
+  (spacemacs/set-leader-keys "ym" 'helm-ros-set-master-uri)
 
   ;; ycmd
   (setq ycmd-server-command (list "python3" (file-truename "~/.spacemacs.d/ycmd/ycmd")))
@@ -344,7 +365,15 @@ you should place your code here."
   (spacemacs/set-leader-keys "ps" 'projectile-grep)
 
   ;; Python interpreter
-  (setq python-shell-interpreter "/usr/bin/python3")
+  (setq python-shell-interpreter "ipython3")
+  (setq python-shell-interpreter-args "--classic --no-banner --pprint")
+
+  ;; Associate modes to file extensions
+  (add-to-list 'auto-mode-alist '("\\.launch$" . xml-mode))
+  (add-to-list 'auto-mode-alist '("\\.urdf$" . xml-mode))
+  (add-to-list 'auto-mode-alist '("\\.xacro$" . xml-mode))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+
 
   ;; Autocompletion configuration
   (use-package company
@@ -371,5 +400,23 @@ you should place your code here."
   (defun clang-format-bindings ()
     (define-key c++-mode-map (kbd "C-=") 'clang-format-buffer))
   )
-  (with-eval-after-load 'evil
-    (defalias #'forward-evil-word #'forward-evil-symbol))
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter flycheck-ycmd engine-mode diff-hl company-ycmd ycmd request-deferred browse-at-remote yasnippet-snippets yapfify yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon subatomic256-theme string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode rjsx-mode restart-emacs realgud rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin planet-theme pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file omnisharp neotree nameless mwim multi-term move-text monokai-theme mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode link-hint json-navigator json-mode js2-refactor js-doc intero indent-guide importmagic impatient-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-ros helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-hoogle helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish define-word cython-mode counsel-projectile company-web company-tern company-statistics company-cabal company-anaconda column-enforce-mode cmm-mode clean-aindent-mode centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
