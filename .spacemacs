@@ -314,9 +314,9 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (setq-default
-   dotspacemacs-themes '(planet
-                         ir-black
-                         alect-black
+   dotspacemacs-themes '(
+                         zenburn
+                         planet
    ;; other themes
                         ))
 )
