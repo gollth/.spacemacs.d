@@ -320,11 +320,6 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
-  ;;(define-key global-map (kbd "SPC y y") #'helm-ros)
-;;  (define-key global-map (kbd "SPC y t t") #'helm-ros-topics)
-;;  (define-key global-map (kbd "SPC y t t") #'helm-ros-topics)
-;;  (define-key global-map (kbd "SPC y t z") #'helm-rostopics-hz)
-
   )
 
 (defun dotspacemacs/user-config ()
