@@ -1,5 +1,7 @@
-# dot-spacemacs
-This is the repository of a personal spacemacs config file.
+# Spacemacs Config
+My general customization for Spacemacs
+
+
 ## Requirements
 ### Emacs26
 To install emacs26:
@@ -33,3 +35,25 @@ For cmake projects it is necessary to compile the projects with flag:
 ```
 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 ``` 
+## Layers
+
+### Lanugages
+- python
+- markdown
+- haskell
+- C#
+- haskell
+- javascript
+- html
+- yaml
+- JS(X)
+    
+
+### Misc
+- helm
+- autocompletion
+- syntax checking
+- git
+- org
+- shell
+- react
