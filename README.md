@@ -1,12 +1,40 @@
 # Spacemacs Config
 My general customization for Spacemacs
 
-## Setup
+
+## Requirements
+### Emacs26
+To install emacs26:
 ```
-$ git clone http://github.com/gollth/.spacemacs.d ~/.spacemacs.d
-$ ln -s ~/.spacemacs.d/.spacemacs ~/.spacemacs
+sudo add-apt-repository ppa:kelleyk/emacs
+sudo apt-get update
+sudo apt install emacs26
+
+```
+### Spacemacs
+```
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+cd ~/.emacs.d
+git checkout develop
+```
+## Installation
+To use this config file:
+```
+git clone https://github.com/gollth/.spacemacs.d ~/.spacemacs.d
+
+# Backup your ~/.spacemacs file if it already exits.
+ln -s -f ~/.spacemacs.d/.spacemacs ~/.spacemacs 
+
+# Setup ycmd
+cd ~/.spacemacs.d
+./setup.sh
 ```
 
+## YCMD
+For cmake projects it is necessary to compile the projects with flag:
+```
+-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+``` 
 ## Layers
 
 ### Lanugages
