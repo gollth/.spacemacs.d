@@ -367,12 +367,6 @@ you should place your code here."
 
   (spacemacs/set-leader-keys "ym" 'helm-ros-set-master-uri)
 
-  ;; ycmd
-  (setq ycmd-server-command (list "python3" (file-truename "~/.spacemacs.d/ycmd/ycmd")))
-  (setq ycmd-force-semantic-completion t)
-  (spacemacs/set-leader-keys "ef" 'eslint-fix)
-
-
   ;; Project grep
   (spacemacs/set-leader-keys "ps" 'projectile-grep)
 
@@ -393,24 +387,21 @@ you should place your code here."
     :config
     (setq company-idle-delay 0)
     (setq company-minimum-prefix-length 2))
-  (with-eval-after-load 'company
-    (define-key company-active-map (kbd "M-n") nil)
-    (define-key company-active-map (kbd "M-p") nil)
-    (define-key company-active-map (kbd "C-j") 'company-select-next)
-    (define-key company-active-map (kbd "C-k") 'company-select-previous))
-  (with-eval-after-load 'company
-    (add-hook 'company-mode-hook 'company-bindings)
-    (add-hook 'c++-mode-hook 'company-mode)
-    (add-hook 'c-mode-hook 'company-mode))
 
-;;  (with-eval-after-load 'rjsx-mode
-;;    (add-hook 'rjsx-mode-hook 'flycheck-mode)
-;;    (with-eval-after-load 'flycheck
-;;      (require 'flycheck-flow)
-;;      (flycheck-add-mode 'javascript-flow 'rjsx-mode))
-;;    (evil-define-key 'normal rjsx-mode-map (kbd "C-d") 'rjsx-delete-creates-full-tag))
+  (setq ycmd-server-command (list "python3" (file-truename "~/.spacemacs.d/ycmd/ycmd")))
+  (setq ycmd-force-semantic-completion t)
 
-  ;; Bind clang-format-region to C-M-tab in all modes:
+  (add-hook 'c++-mode-hook
+            (lambda()
+              (spacemacs/set-leader-keys "ef"
+                'ycmd-fixit)))
+
+  (add-hook 'rjsx-mode-hook
+            (lambda()
+              (spacemacs/set-leader-keys "ef"
+                'eslint-fix)))
+
+  ;; Bind clang-format to C-` in all modes:
   (global-set-key (kbd "C-`") 'spacemacs/clang-format-region-or-buffer)
   )
 
