@@ -402,6 +402,13 @@ you should place your code here."
   (defun company-bindings ()
     (define-key company-mode-map [tab] 'company-complete))
 
+;;  (with-eval-after-load 'rjsx-mode
+;;    (add-hook 'rjsx-mode-hook 'flycheck-mode)
+;;    (with-eval-after-load 'flycheck
+;;      (require 'flycheck-flow)
+;;      (flycheck-add-mode 'javascript-flow 'rjsx-mode))
+;;    (evil-define-key 'normal rjsx-mode-map (kbd "C-d") 'rjsx-delete-creates-full-tag))
+
   ;; Bind clang-format-region to C-M-tab in all modes:
   (global-set-key [C-M-tab] 'clang-format-region)
   ;; Bind clang-format-buffer to tab on the c++-mode only:
