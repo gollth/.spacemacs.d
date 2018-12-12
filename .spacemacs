@@ -2,8 +2,6 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
-(add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t)))
-
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
@@ -350,7 +348,7 @@ you should place your code here."
 
   ;; General Appearance
   (spacemacs/toggle-indent-guide-globally-on)
-  (spacemacs/toggle-golden-ratio-on)
+  (spacemacs/toggle-auto-fill-mode-off)
 
   ;; ROS shortcut
   (spacemacs/declare-prefix "y" "ROS")
