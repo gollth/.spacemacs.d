@@ -402,8 +402,6 @@ you should place your code here."
     (add-hook 'company-mode-hook 'company-bindings)
     (add-hook 'c++-mode-hook 'company-mode)
     (add-hook 'c-mode-hook 'company-mode))
-  (defun company-bindings ()
-    (define-key company-mode-map [tab] 'company-complete))
 
 ;;  (with-eval-after-load 'rjsx-mode
 ;;    (add-hook 'rjsx-mode-hook 'flycheck-mode)
@@ -413,12 +411,9 @@ you should place your code here."
 ;;    (evil-define-key 'normal rjsx-mode-map (kbd "C-d") 'rjsx-delete-creates-full-tag))
 
   ;; Bind clang-format-region to C-M-tab in all modes:
-  (global-set-key [C-M-tab] 'clang-format-region)
-  ;; Bind clang-format-buffer to tab on the c++-mode only:
-  (add-hook 'c++-mode-hook 'clang-format-bindings)
-  (defun clang-format-bindings ()
-    (define-key c++-mode-map (kbd "C-=") 'clang-format-buffer))
+  (global-set-key (kbd "C-`") 'spacemacs/clang-format-region-or-buffer)
   )
+
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
