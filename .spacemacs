@@ -286,7 +286,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers t
+   dotspacemacs-line-numbers nil
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -347,6 +347,11 @@ you should place your code here."
   (setq browse-url-browser-function 'browse-url-generic
         engine/browser-function 'browse-url-generic
         browse-url-generic-program "firefox")
+
+  ;; General Appearance
+  (spacemacs/toggle-indent-guide-globally-on)
+  (spacemacs/toggle-golden-ratio-on)
+
   ;; ROS shortcut
   (spacemacs/declare-prefix "y" "ROS")
   (spacemacs/set-leader-keys "yy" 'helm-ros)
