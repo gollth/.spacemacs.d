@@ -161,6 +161,8 @@ values."
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -197,8 +199,6 @@ values."
    dotspacemacs-ex-substitute-global nil
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
-
-   dotspacemacs-mode-line-theme ('all-the-icons)
 
    ;; If non nil the default layout name is displayed in the mode-line.
    ;; (default nil)
