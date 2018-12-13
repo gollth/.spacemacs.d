@@ -351,6 +351,10 @@ you should place your code here."
   (spacemacs/toggle-auto-fill-mode-off)
   (setq find-file-visit-truename t)
 
+
+  ;; The "Silver Searcher" (ag)
+  (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
+
   ;; ROS shortcut
   (spacemacs/declare-prefix "y" "ROS")
   (spacemacs/set-leader-keys "yy" 'helm-ros)
