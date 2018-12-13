@@ -349,6 +349,7 @@ you should place your code here."
   ;; General Appearance
   (spacemacs/toggle-indent-guide-globally-on)
   (spacemacs/toggle-auto-fill-mode-off)
+  (setq find-file-visit-truename t)
 
   ;; ROS shortcut
   (spacemacs/declare-prefix "y" "ROS")
