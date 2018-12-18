@@ -352,7 +352,20 @@ you should place your code here."
   ;; General Appearance
   (spacemacs/toggle-indent-guide-globally-on)
   (spacemacs/toggle-auto-fill-mode-off)
-  (setq find-file-visit-truename t)
+  (setq find-file-visit-truename t)             ;; follow symlinks
+  (spacemacs/toggle-vi-tilde-fringe-off)        ;; no ~ on empty lines
+  (add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t)))
+
+  (spaceline-toggle-minor-modes-off)
+  (spaceline-toggle-buffer-modified-off)
+  (spaceline-toggle-buffer-position-off)
+  (spaceline-toggle-buffer-size-off)
+  (spaceline-toggle-major-mode-off)
+  (spaceline-toggle-point-position-off)
+  (spaceline-toggle-which-function-off)
+  (spaceline-toggle-purpose-off)
+  (spaceline-toggle-buffer-encoding-abbrev-off)
+  (spaceline-toggle-line-column-off)
 
 
   ;; The "Silver Searcher" (ag)
