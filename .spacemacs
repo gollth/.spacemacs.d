@@ -316,6 +316,9 @@ values."
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup nil
+
+   ;; Default indentation for Java/C/C++
+   c-basic-offset 4
    ))
 
 (defun dotspacemacs/user-init ()
