@@ -421,6 +421,16 @@ you should place your code here."
             (lambda()
               (spacemacs/set-leader-keys "ef"
                 'eslint-fix)))
+  (add-hook 'rjsx-mode-hook
+            (lambda()
+              (spacemacs/set-leader-keys "dd"
+                'js-doc-insert-function-doc)))
+  (add-hook 'rjsx-mode-hook
+            (lambda()
+              (spacemacs/set-leader-keys "da"
+                'js-doc-insert-tag)))
+
+
 
   ;; Bind clang-format to C-` in all modes:
   (global-set-key (kbd "C-`") 'spacemacs/clang-format-region-or-buffer)
