@@ -66,8 +66,8 @@ values."
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.1
-                      auto-completion-private-snippets-directory nil)
+                      auto-completion-complete-with-key-sequence-delay 0
+                      auto-completion-private-snippets-directory "~/.spacemacs.d/snippets")
      syntax-checking
      ycmd
      (syntax-checking :variables syntax-checking-enable-by-default t)
