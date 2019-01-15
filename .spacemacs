@@ -47,7 +47,9 @@ values."
             shell-default-position 'bottom)
      react
      ;; LANGUAGES
-     (haskell :variables haskell-completion-backend 'intero)
+     (haskell :variables
+              haskell-completion-backend 'intero
+              haskell-enable-hindent-style "johan-tibell")
      javascript
      python
      html
@@ -343,6 +345,10 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+
+
+  (add-to-list 'exec-path "~/.local/bin")
+
   ;; Set google as default search engine
   (spacemacs/set-leader-keys "ag" 'engine/search-google)
   (setq browse-url-browser-function 'browse-url-generic
@@ -431,6 +437,7 @@ you should place your code here."
                 'js-doc-insert-tag)))
 
 
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
   ;; Bind clang-format to C-` in all modes:
   (global-set-key (kbd "C-`") 'spacemacs/clang-format-region-or-buffer)
