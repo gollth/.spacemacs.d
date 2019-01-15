@@ -433,7 +433,7 @@ you should place your code here."
             (lambda()
               (spacemacs/set-leader-keys "da"
                 'js-doc-insert-tag)))
-
+  (add-hook 'markdown-mode-hook 'spacemacs/toggle-truncate-lines-off)
 
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
