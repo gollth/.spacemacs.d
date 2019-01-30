@@ -40,6 +40,7 @@ values."
      ;; FRAMEWORKS
      helm
      debug
+     ranger
      (org :variables org-want-todo-bindings t)
      search-engine
      (shell :variables
