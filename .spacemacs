@@ -34,7 +34,7 @@ values."
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
+     ;; <M-m f e R> (Emacs style) to install tmem.
      ;; ----------------------------------------------------------------
 
      ;; FRAMEWORKS
@@ -399,6 +399,9 @@ you should place your code here."
   ;; Python interpreter
   (setq python-shell-interpreter "ipython3")
   (setq python-shell-interpreter-args "--classic --no-banner --pprint")
+
+  ;; Haskell
+  (setq haskell-hoogle-command "hoogle -i")
 
   ;; Associate modes to file extensions
   (add-to-list 'auto-mode-alist '("\\.launch$" . xml-mode))
