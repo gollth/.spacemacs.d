@@ -401,6 +401,15 @@ you should place your code here."
   (spacemacs/set-leader-keys "ym" 'helm-ros-set-master-uri)
   (spacemacs/set-leader-keys "yM" 'helm-ros-roscore)
 
+  ;; Catkin shortcut
+  (spacemacs/declare-prefix "yc" "Catkin")
+  (spacemacs/set-leader-keys "ycc" 'catkin)
+  (spacemacs/set-leader-keys "ycb" 'catkin-build)
+  (spacemacs/set-leader-keys "ycl" 'catkin-workspace)
+  (spacemacs/set-leader-keys "ycw" 'catkin-set-workspace)
+  (spacemacs/set-leader-keys "ycx" 'catkin-clean)
+  (spacemacs/set-leader-keys "yci" 'catkin-init)
+  (spacemacs/set-leader-keys "yco" 'catkin-config-open)
 
   ;; Python interpreter
   (setq python-shell-interpreter "ipython")
