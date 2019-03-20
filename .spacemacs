@@ -58,7 +58,6 @@ values."
      yaml
      emacs-lisp
      better-defaults
-     python
      git
      csharp
      (c-c++ :variables
@@ -78,7 +77,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(helm-ros eslint-fix el-mock)
+   dotspacemacs-additional-packages '(helm-ros exec-path-from-shell eslint-fix el-mock)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -337,6 +336,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
                          monokai
                          subatomic256)))
 
+(defun spacemacs/update-ros-envs ()
+  (interactive)
+  (exec-path-from-shell-copy-envs '("ROS_IP" "PYTHONPATH" "CMAKE_PREFIX_PATH" "ROS_MASTER_URI" "LD_LIBRARY_PATH"))
+  )
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -358,7 +362,7 @@ you should place your code here."
   (spacemacs/toggle-indent-guide-globally-on)
   (spacemacs/toggle-auto-fill-mode-off)
   (setq find-file-visit-truename t)             ;; follow symlinks
-  (spacemacs/toggle-vi-tilde-fringe-off)        ;; no ~ on empty lines
+  (global-vi-tilde-fringe-mode nil)             ;; disable ~ symbols on empty lines
   (add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t)))
 
   (spaceline-toggle-minor-modes-off)
@@ -375,8 +379,11 @@ you should place your code here."
 
   ;; The "Silver Searcher" (ag)
   (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
+  (setq helm-swoop-use-fuzzy-match t)
+  (setq helm-swoop-use-line-number-face nil)
 
   ;; ROS shortcut
+  (spacemacs/set-leader-keys "ye" 'spacemacs/update-ros-envs)
   (spacemacs/declare-prefix "y" "ROS")
   (spacemacs/set-leader-keys "yy" 'helm-ros)
 
@@ -392,12 +399,11 @@ you should place your code here."
   (spacemacs/set-leader-keys "ynr" 'helm-ros-run-node)
 
   (spacemacs/set-leader-keys "ym" 'helm-ros-set-master-uri)
+  (spacemacs/set-leader-keys "yM" 'helm-ros-roscore)
 
-  ;; Project grep
-  (spacemacs/set-leader-keys "ps" 'projectile-grep)
 
   ;; Python interpreter
-  (setq python-shell-interpreter "ipython3")
+  (setq python-shell-interpreter "ipython")
   (setq python-shell-interpreter-args "--classic --no-banner --pprint")
 
   ;; Haskell
@@ -417,7 +423,7 @@ you should place your code here."
     (setq company-idle-delay 0)
     (setq company-minimum-prefix-length 2))
 
-  (setq ycmd-server-command (list "python3" (file-truename "~/.spacemacs.d/ycmd/ycmd")))
+  (setq ycmd-server-command (list "python" (file-truename "~/.spacemacs.d/ycmd/ycmd")))
   (setq ycmd-force-semantic-completion t)
 
   (add-hook 'c++-mode-hook
@@ -457,7 +463,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ert-runner cask el-mock intero yasnippet-snippets yapfify yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon subatomic256-theme string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode rjsx-mode restart-emacs realgud rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin planet-theme pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file omnisharp neotree nameless mwim multi-term move-text monokai-theme mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode link-hint json-navigator json-mode js2-refactor js-doc indent-guide importmagic impatient-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-ros helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-hoogle helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate google-c-style golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flycheck-ycmd flycheck-rtags flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslint-fix eshell-z eshell-prompt-extras esh-help engine-mode emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline disaster diminish diff-hl define-word cython-mode counsel-projectile company-ycmd company-web company-tern company-statistics company-rtags company-ghci company-cabal company-c-headers company-anaconda column-enforce-mode cmm-mode clean-aindent-mode clang-format centered-cursor-mode browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (exec-path-from-shell ert-runner cask el-mock intero yasnippet-snippets yapfify yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit symon subatomic256-theme string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode rjsx-mode restart-emacs realgud rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin planet-theme pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file omnisharp neotree nameless mwim multi-term move-text monokai-theme mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode link-hint json-navigator json-mode js2-refactor js-doc indent-guide importmagic impatient-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-ros helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-hoogle helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate google-c-style golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flycheck-ycmd flycheck-rtags flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslint-fix eshell-z eshell-prompt-extras esh-help engine-mode emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline disaster diminish diff-hl define-word cython-mode counsel-projectile company-ycmd company-web company-tern company-statistics company-rtags company-ghci company-cabal company-c-headers company-anaconda column-enforce-mode cmm-mode clean-aindent-mode clang-format centered-cursor-mode browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -7,5 +7,5 @@ git submodule update --init --recursive
 if [ -d "ycmd" ]; then
     cd ycmd
     git submodule update --init --recursive
-    python3 build.py --clang-completer
+    python build.py --clang-completer
 fi
