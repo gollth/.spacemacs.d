@@ -379,6 +379,8 @@ you should place your code here."
   (spacemacs/toggle-auto-fill-mode-off)
   (setq find-file-visit-truename t)             ;; follow symlinks
   (add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t)))
+  (global-set-key (kbd "C-+") 'spacemacs/scale-up-font)
+  (global-set-key (kbd "C--") 'spacemacs/scale--font)
 
   (spaceline-toggle-minor-modes-off)
   (spaceline-toggle-buffer-modified-off)
@@ -391,6 +393,14 @@ you should place your code here."
   (spaceline-toggle-buffer-encoding-abbrev-off)
   (spaceline-toggle-line-column-off)
 
+  ;; Evil Mode
+  (evil-define-key 'normal global-map (kbd "C-a") 'evil-numbers/inc-at-pt)
+  (evil-define-key 'normal global-map (kbd "C-x") 'evil-numbers/dec-at-pt)
+
+  ;; define some characters to be part of a sympbol depending on the mode
+  (add-hook 'emacs-lisp-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))  ; will treat foo-bar as one symbol
+  ;; for all other programming modes
+  (add-hook 'prog-mode-hook       #'(lambda () (modify-syntax-entry ?_ "w")))  ; will treat foo_bar as one symbol
 
   ;; The "Silver Searcher" (ag)
   (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
