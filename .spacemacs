@@ -446,10 +446,11 @@ you should place your code here."
 
   ;; Associate modes to file extensions
   (add-to-list 'auto-mode-alist '("\\.launch$" . xml-mode))
-  (add-to-list 'auto-mode-alist '("\\.urdf$" . xml-mode))
-  (add-to-list 'auto-mode-alist '("\\.xacro$" . xml-mode))
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
-
+  (add-to-list 'auto-mode-alist '("\\.urdf$"   . xml-mode))
+  (add-to-list 'auto-mode-alist '("\\.xacro$"  . xml-mode))
+  (add-to-list 'auto-mode-alist '("\\.test$"   . xml-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx$"    . react-mode))
+  (add-to-list 'auto-mode-alist '("\\.js$"     . react-mode))
 
   ;; Autocompletion configuration
   (use-package company
