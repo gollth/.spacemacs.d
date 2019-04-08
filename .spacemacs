@@ -331,15 +331,31 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
   (setq-default
-  ;; ... other configurations...
+   ;; themes
    dotspacemacs-themes '(planet
                          monokai
-                         subatomic256)))
+                         subatomic256)
+
+   ;; Ignore any ROS environment variables since they might change depending
+   ;; on which catkin workspace is used. When a new catkin workspace is chosen
+   ;; call `spacemacs/update-ros-envs' to update theses envs accordingly
+   spacemacs-ignored-environment-variables '("ROS_IP"
+                                             "PYTHONPATH"
+                                             "CMAKE_PREFIX_PATH"
+                                             "ROS_MASTER_URI"
+                                             "ROS_PACKAGE_PATH"
+                                             "ROSLISP_PACKAGE_DIRECTORIES"
+                                             "PKG_CONFIG_PATH"
+                                             "LD_LIBRARY_PATH")))
+
 
 (defun spacemacs/update-ros-envs ()
+  "Update all environment variables in `spacemacs-ignored-environment-variables'
+from their values currently sourced in the shell environment (e.g. .bashrc)"
   (interactive)
-  (exec-path-from-shell-copy-envs '("ROS_IP" "PYTHONPATH" "CMAKE_PREFIX_PATH" "ROS_MASTER_URI" "LD_LIBRARY_PATH"))
-  )
+  (setq exec-path-from-shell-check-startup-files nil)
+  (exec-path-from-shell-copy-envs spacemacs-ignored-environment-variables)
+  (message "ROS environment copied successfully from shell"))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -383,6 +399,7 @@ you should place your code here."
   (setq helm-swoop-use-line-number-face nil)
 
   ;; ROS shortcut
+  (spacemacs/update-ros-envs)  ;; do this once initially
   (spacemacs/set-leader-keys "ye" 'spacemacs/update-ros-envs)
   (spacemacs/declare-prefix "y" "ROS")
   (spacemacs/set-leader-keys "yy" 'helm-ros)
