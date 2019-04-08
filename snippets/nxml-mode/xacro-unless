@@ -1,7 +1,0 @@
-# -*- mode: xml-mode -*-
-# name: xacro-unless
-# key:  xacro-unless
-# --
-<xacro:unless value="\$($1)">
-    $0
-</xacro:unless>

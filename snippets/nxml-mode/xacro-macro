@@ -1,7 +1,0 @@
-# -*- mode: nxml-mode -*-
-# name: xacro-macro
-# key: xacro-macro
-# --
-<xacro:macro name="$1" params="${2:}">
-  $0
-</xacro:macro>

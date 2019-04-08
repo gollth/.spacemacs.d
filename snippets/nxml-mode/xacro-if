@@ -1,7 +1,0 @@
-# -*- mode: xml-mode -*-
-# key:  xacro-if
-# name: Create a <xacro:if ... /> block
-# --
-<xacro:if value="\$(arg $1)">
-    $0
-</xacro:if>
