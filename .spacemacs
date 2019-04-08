@@ -366,7 +366,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
   ;; Catkin-Tools Package
-  (load-file ".emacs.d/private/catkin/catkin.el")
+  (load-file "~/.emacs.d/private/helm-catkin/helm-catkin.el")
 
   ;; Set google as default search engine
   (spacemacs/set-leader-keys "ag" 'engine/search-google)
@@ -419,13 +419,13 @@ you should place your code here."
 
   ;; Catkin shortcut
   (spacemacs/declare-prefix "yc" "Catkin")
-  (spacemacs/set-leader-keys "ycc" 'catkin)
-  (spacemacs/set-leader-keys "ycb" 'catkin-build)
-  (spacemacs/set-leader-keys "ycl" 'catkin-workspace)
-  (spacemacs/set-leader-keys "ycw" 'catkin-set-workspace)
-  (spacemacs/set-leader-keys "ycx" 'catkin-clean)
-  (spacemacs/set-leader-keys "yci" 'catkin-init)
-  (spacemacs/set-leader-keys "yco" 'catkin-config-open)
+  (spacemacs/set-leader-keys "ycc" 'helm-catkin)
+  (spacemacs/set-leader-keys "ycb" 'helm-catkin-build)
+  (spacemacs/set-leader-keys "ycW" 'helm-catkin-no-workspace)
+  (spacemacs/set-leader-keys "ycw" 'helm-catkin-set-workspace)
+  (spacemacs/set-leader-keys "ycx" 'helm-catkin-clean)
+  (spacemacs/set-leader-keys "yci" 'helm-catkin-init)
+  (spacemacs/set-leader-keys "yco" 'helm-catkin-config-open)
 
   ;; Python interpreter
   (setq python-shell-interpreter "ipython")
