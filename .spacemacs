@@ -77,7 +77,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(helm-ros exec-path-from-shell eslint-fix el-mock xclip)
+   dotspacemacs-additional-packages '(helm-ros helm-catkin exec-path-from-shell eslint-fix el-mock xclip)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -364,8 +364,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
-  ;; Catkin-Tools & Roslaunch-Jump Package
-  (load-file "~/.emacs.d/private/helm-catkin/helm-catkin.el")
+  ;; Roslaunch-Jump Package
   (load-file "~/.emacs.d/private/roslaunch-jump/roslaunch-jump.el")
 
   ;; Set google as default search engine
