@@ -434,9 +434,11 @@ you should place your code here."
   (spacemacs/set-leader-keys "ycb" 'helm-catkin-build)
   (spacemacs/set-leader-keys "ycW" 'helm-catkin-no-workspace)
   (spacemacs/set-leader-keys "ycw" 'helm-catkin-set-workspace)
+  (spacemacs/set-leader-keys "ycr" 'helm-catkin-get-workspace-root)
   (spacemacs/set-leader-keys "ycx" 'helm-catkin-clean)
   (spacemacs/set-leader-keys "yci" 'helm-catkin-init)
   (spacemacs/set-leader-keys "yco" 'helm-catkin-config-open)
+  (add-hook 'helm-catkin-build-done-hook #'evil-force-normal-state)
 
   ;; Python interpreter
   (setq python-shell-interpreter "ipython")
