@@ -444,6 +444,13 @@ you should place your code here."
   (setq python-shell-interpreter "ipython")
   (setq python-shell-interpreter-args "--classic --no-banner --pprint")
 
+  ;; Semantic helm
+  (spacemacs/set-leader-keys-for-major-mode 'c-mode "?" 'helm-semantic-or-imenu)
+  (spacemacs/set-leader-keys-for-major-mode 'c++-mode "?" 'helm-semantic-or-imenu)
+  (spacemacs/set-leader-keys-for-major-mode 'emacs-lisp-mode "?" 'helm-semantic-or-imenu)
+  (spacemacs/set-leader-keys-for-major-mode 'go-mode "?" 'helm-semantic-or-imenu)
+  (spacemacs/set-leader-keys-for-major-mode 'python-mode "?" 'helm-semantic-or-imenu)
+
   ;; Haskell
   (setq haskell-hoogle-command "hoogle -i")
 
