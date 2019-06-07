@@ -45,6 +45,7 @@ values."
      search-engine
      (shell :variables
             shell-default-height 30
+            shell-default-term-shell "/usr/bin/zsh"
             shell-default-position 'bottom)
      (cmake :variables cmake-enable-cmake-ide-support t)
      react
