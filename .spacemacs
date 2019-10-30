@@ -383,7 +383,10 @@ you should place your code here."
   (spacemacs/toggle-indent-guide-globally-on)
   (spacemacs/toggle-auto-fill-mode-off)
   (setq find-file-visit-truename t)             ;; follow symlinks
-  (add-hook 'prog-mode-hook 'fira-code-mode)    ;; for nice programming ligatures
+
+  ;; for nice programming ligatures (only in GUI)
+  (when (display-graphic-p) (add-hook 'prog-mode-hook 'fira-code-mode))
+
   (add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t)))
   (global-set-key (kbd "C-+") 'spacemacs/scale-up-font)
   (global-set-key (kbd "C--") 'spacemacs/scale--font)
