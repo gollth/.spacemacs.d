@@ -57,6 +57,7 @@ values."
      html
      rust
      markdown
+     groovy
      yaml
      emacs-lisp
      better-defaults
