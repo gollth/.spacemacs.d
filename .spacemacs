@@ -50,7 +50,6 @@ values."
      react
      ;; LANGUAGES
      (haskell :variables
-              haskell-completion-backend 'intero
               haskell-enable-hindent-style "johan-tibell")
      javascript
      python
