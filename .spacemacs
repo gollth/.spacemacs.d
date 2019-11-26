@@ -450,6 +450,7 @@ you should place your code here."
   (spacemacs/set-leader-keys "yci" 'helm-catkin-init)
   (spacemacs/set-leader-keys "yco" 'helm-catkin-config-open)
   (add-hook 'helm-catkin-build-done-hook #'evil-force-normal-state)
+  (add-hook 'prog-mode-hook 'format-all-mode)
 
   ;; Python interpreter
   (setq python-shell-interpreter "ipython")
