@@ -475,8 +475,8 @@ you should place your code here."
   (add-to-list 'auto-mode-alist '("\\.urdf$"   . xml-mode))
   (add-to-list 'auto-mode-alist '("\\.xacro$"  . xml-mode))
   (add-to-list 'auto-mode-alist '("\\.test$"   . xml-mode))
-  (add-to-list 'auto-mode-alist '("\\.jsx$"    . react-mode))
-  (add-to-list 'auto-mode-alist '("\\.js$"     . react-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx$"    . rjsx-mode))
+  (add-to-list 'auto-mode-alist '("\\.js$"     . rjsx-mode))
 
   ;; Autocompletion configuration
   (use-package company
