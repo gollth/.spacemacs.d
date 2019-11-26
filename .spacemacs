@@ -390,6 +390,7 @@ you should place your code here."
   (add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t)))
   (global-set-key (kbd "C-+") 'spacemacs/scale-up-font)
   (global-set-key (kbd "C--") 'spacemacs/scale--font)
+  (spacemacs/set-leader-keys "ic" 'insert-char)
   (global-set-key (kbd "C-c C-z") 'suspend-frame)   ;; useful for cli mode
 
   (spaceline-toggle-minor-modes-off)
