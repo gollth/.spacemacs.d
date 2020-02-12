@@ -1,7 +1,16 @@
 #!/bin/sh
 
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt update
-sudo apt install build-essential cmake python3-dev
+sudo apt install -y \
+     build-essential \
+     cmake \
+     g++-7 \
+     python3-pip \
+     python3-dev \
+     silversearcher-ag \
+     software-properties-common \
+     xclip
 
 git submodule update --init --recursive
 
