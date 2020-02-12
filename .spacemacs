@@ -71,7 +71,6 @@ values."
                       auto-completion-complete-with-key-sequence-delay 0
                       auto-completion-private-snippets-directory "~/.spacemacs.d/snippets")
      syntax-checking
-     ycmd
      (syntax-checking :variables syntax-checking-enable-by-default t)
      version-control
      )
@@ -485,14 +484,6 @@ you should place your code here."
     (setq company-idle-delay 0)
     (setq company-minimum-prefix-length 2))
 
-  (setq ycmd-server-command (list "python" (file-truename "~/.spacemacs.d/ycmd/ycmd")))
-  (setq ycmd-force-semantic-completion t)
-
-  (spacemacs/set-leader-keys "ef" 'ycmd-fixit)
-  (add-hook 'c++-mode-hook
-            (lambda()
-              (spacemacs/set-leader-keys "ef"
-                'ycmd-fixit)))
 
   (add-hook 'rjsx-mode-hook
             (lambda()
