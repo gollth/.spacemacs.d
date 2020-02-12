@@ -365,6 +365,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
                          monokai
                          subatomic256)
 
+   ;; Git Status Buffer always in Fullscreen
+   git-magit-status-fullscreen t
+
    ;; Ignore any ROS environment variables since they might change depending
    ;; on which catkin workspace is used. When a new catkin workspace is chosen
    ;; call `spacemacs/update-ros-envs' to update theses envs accordingly
