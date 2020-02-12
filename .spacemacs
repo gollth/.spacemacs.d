@@ -62,9 +62,29 @@ values."
      better-defaults
      git
      csharp
+     (lsp :variables
+          lsp-enable-symbol-highlighting nil
+          lsp-enable-on-type-formatting nil
+          lsp-enable-indentation nil
+          lsp-enable-file-watchers t
+          lsp-prefer-flymake nil
+          lsp-file-watch-threshold nil
+          lsp-auto-guess-root t
+          lsp-before-save-edits nil
+          lsp-ui-doc-enable nil
+          lsp-ui-doc-header t
+          lsp-ui-doc-include-signature t
+          lsp-ui-doc-border (face-foreground 'default)
+          lsp-ui-doc-delay 0
+          lsp-ui-sideline-enable nil
+          lsp-ui-sideline-ignore-duplicate t
+          lsp-ui-sideline-show-code-actions t)
      (c-c++ :variables
-              c-c++-default-mode-for-headers 'c++-mode
-              c-c++-enable-clang-support t)
+            c-c++-backend 'lsp-ccls
+            c-c++-adopt-subprojects t
+            c-c++-lsp-enable-semantic-highlight t
+            c-c++-enable-clang-format-on-save t
+            c-c++-default-mode-for-headers 'c++-mode)
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-complete-with-key-sequence nil
@@ -450,6 +470,17 @@ you should place your code here."
   (spacemacs/set-leader-keys "yco" 'helm-catkin-config-open)
   (add-hook 'helm-catkin-build-done-hook #'evil-force-normal-state)
   (add-hook 'prog-mode-hook 'format-all-mode)
+
+  ;; C/C++ Mode
+  (require 'ccls)
+  (setq ccls-root-files (add-to-list 'ccls-root-files "build/compile_commands.json" t))
+  (setq ccls-sem-highlight-method 'font-lock)
+  (setq ccls-initialization-options
+        (list :cache (list :directory (concat (file-name-as-directory spacemacs-cache-directory) ".ccls-cache") )
+              :compilationDatabaseDirectory "build"))
+  (setq ccls-executable (file-truename "~/.spacemacs.d/ccls/Release/ccls"))
+  (evil-define-key 'normal global-map (kbd ",k") (lambda () (interactive) (ccls-navigate "L")))
+  (evil-define-key 'normal global-map (kbd ",j") (lambda () (interactive) (ccls-navigate "R")))
 
   ;; Python interpreter
   (setq python-shell-interpreter "ipython")
