@@ -413,6 +413,7 @@ you should place your code here."
   (spacemacs/toggle-indent-guide-globally-on)
   (spacemacs/toggle-auto-fill-mode-off)
   (setq find-file-visit-truename t)             ;; follow symlinks
+  (setq helm-completion-style 'helm-fuzzy)      ;; set Helm searches to match fuzzily
 
   ;; for nice programming ligatures (only in GUI)
   (when (display-graphic-p) (add-hook 'prog-mode-hook 'fira-code-mode))
