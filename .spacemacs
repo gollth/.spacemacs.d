@@ -451,6 +451,9 @@ you should place your code here."
   (setq helm-swoop-use-fuzzy-match t)
   (setq helm-swoop-use-line-number-face nil)
 
+  ;; Ranger
+  (spacemacs/set-leader-keys "ar" 'ranger)
+
   ;; ROS shortcut
   (spacemacs/update-ros-envs)  ;; do this once initially
   (spacemacs/set-leader-keys "ye" 'spacemacs/update-ros-envs)
