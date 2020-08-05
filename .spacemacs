@@ -40,6 +40,7 @@ values."
      ;; FRAMEWORKS
      helm
      debug
+     docker
      ranger
      (org :variables org-want-todo-bindings t)
      search-engine
