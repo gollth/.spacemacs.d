@@ -512,6 +512,7 @@ you should place your code here."
   (spacemacs/declare-prefix "aal" "Library")
   (spacemacs/set-leader-keys "aall" 'arduino-cli-lib-list)
   (spacemacs/set-leader-keys "aali" 'arduino-cli-lib-install)
+  (spacemacs/set-leader-keys "aas" 'serial-term)
   (spacemacs/set-leader-keys "aalu" 'arduino-cli-lib-uninstall)
 
   ;; Python interpreter
