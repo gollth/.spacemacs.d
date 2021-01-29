@@ -108,6 +108,9 @@ values."
      eslint-fix
      el-mock
      xclip
+     auto-minor-mode
+     arduino-mode
+     arduino-cli-mode
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -498,6 +501,19 @@ you should place your code here."
   (evil-define-key 'normal global-map (kbd ",k") (lambda () (interactive) (ccls-navigate "L")))
   (evil-define-key 'normal global-map (kbd ",j") (lambda () (interactive) (ccls-navigate "R")))
 
+  ;; Arduino
+  (setq arduino-cli-default-fqbn "arduino:avr:nano")
+  (setq arduino-cli-default-port "/dev/cu.usbserial-AC00MBHO")
+  (add-to-list 'auto-minor-mode-alist '("\\.ino\\'" . arduino-cli-mode))
+  (spacemacs/declare-prefix "aa" "Arduino")
+  (spacemacs/set-leader-keys "aac" 'arduino-cli-compile)
+  (spacemacs/set-leader-keys "aau" 'arduino-cli-compile-and-upload)
+  (spacemacs/set-leader-keys "aab" 'arduino-cli-board-list)
+  (spacemacs/declare-prefix "aal" "Library")
+  (spacemacs/set-leader-keys "aall" 'arduino-cli-lib-list)
+  (spacemacs/set-leader-keys "aali" 'arduino-cli-lib-install)
+  (spacemacs/set-leader-keys "aalu" 'arduino-cli-lib-uninstall)
+
   ;; Python interpreter
   (setq python-shell-interpreter "ipython")
   (setq python-shell-interpreter-args "--classic --no-banner --pprint")
@@ -563,8 +579,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (magit-section dap-mode bui format-all helm-gtags ggtags counsel-gtags company-lua lua-mode cmake-project xclip yasnippet-snippets yapfify yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights uuidgen use-package unfill toc-org tagedit symon subatomic256-theme string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode rjsx-mode restart-emacs realgud ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin planet-theme pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file omnisharp neotree nameless mwim multi-term move-text monokai-theme mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode link-hint json-navigator json-mode js2-refactor js-doc intero indent-guide importmagic impatient-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-ros helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-hoogle helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate google-c-style golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flycheck-ycmd flycheck-rtags flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslint-fix eshell-z eshell-prompt-extras esh-help engine-mode emmet-mode elisp-slime-nav el-mock editorconfig dumb-jump dotenv-mode doom-modeline disaster diminish diff-hl define-word cython-mode counsel-projectile company-ycmd company-web company-tern company-statistics company-rtags company-cabal company-c-headers company-anaconda column-enforce-mode cmm-mode clean-aindent-mode clang-format centered-cursor-mode browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell)))
+   '(auto-minor-mode arduino-mode magit-section dap-mode bui format-all helm-gtags ggtags counsel-gtags company-lua lua-mode cmake-project xclip yasnippet-snippets yapfify yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights uuidgen use-package unfill toc-org tagedit symon subatomic256-theme string-inflection spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode rjsx-mode restart-emacs realgud ranger rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin planet-theme pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file omnisharp neotree nameless mwim multi-term move-text monokai-theme mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode link-hint json-navigator json-mode js2-refactor js-doc intero indent-guide importmagic impatient-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-ros helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-hoogle helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate google-c-style golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flycheck-ycmd flycheck-rtags flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eslint-fix eshell-z eshell-prompt-extras esh-help engine-mode emmet-mode elisp-slime-nav el-mock editorconfig dumb-jump dotenv-mode doom-modeline disaster diminish diff-hl define-word cython-mode counsel-projectile company-ycmd company-web company-tern company-statistics company-rtags company-cabal company-c-headers company-anaconda column-enforce-mode cmm-mode clean-aindent-mode clang-format centered-cursor-mode browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))
  '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
