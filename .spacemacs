@@ -43,7 +43,6 @@ values."
      debug
      docker
      ranger
-     (org :variables org-want-todo-bindings t)
      search-engine
      (shell :variables
             shell-default-height 30
