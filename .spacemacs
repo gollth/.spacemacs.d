@@ -380,7 +380,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
                                              "ROS_PACKAGE_PATH"
                                              "ROSLISP_PACKAGE_DIRECTORIES"
                                              "PKG_CONFIG_PATH"
-                                             "LD_LIBRARY_PATH")))
+                                             "LD_LIBRARY_PATH"))
+
+  ;; Disalbe "package cl is depreciated" warning until better solution exists
+  (setq byte-compile-warnings '(cl-functions))
+
 
 
 (defun spacemacs/update-ros-envs ()
