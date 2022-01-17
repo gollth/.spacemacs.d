@@ -385,6 +385,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Disalbe "package cl is depreciated" warning until better solution exists
   (setq byte-compile-warnings '(cl-functions))
 
+  ;; Use GNU ls instead of normal ls on OSX because emacs requires --dired option
+  (when (string= system-type "darwin")
+    (setq insert-directory-program "/usr/local/bin/gls")))
 
 
 (defun spacemacs/update-ros-envs ()
