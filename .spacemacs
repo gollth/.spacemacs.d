@@ -424,6 +424,7 @@ you should place your code here."
   (setq find-file-visit-truename t)             ;; follow symlinks
   (setq helm-completion-style 'helm-fuzzy)      ;; set Helm searches to match fuzzily
   (spacemacs/set-leader-keys "zz" 'spacemacs/scale-font-transient-state/body)   ;; Zoom by scaling font size
+  (spacemacs/set-leader-keys "xx" 'query-replace)
 
   ;; for nice programming ligatures (only in GUI)
   (when (display-graphic-p) (add-hook 'prog-mode-hook 'fira-code-mode))
