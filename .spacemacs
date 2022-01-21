@@ -429,6 +429,9 @@ you should place your code here."
   ;; for nice programming ligatures (only in GUI)
   (when (display-graphic-p) (add-hook 'prog-mode-hook 'fira-code-mode))
 
+  ;; Multi-Cursor
+  (global-set-key (kbd "C-k") 'evil-mc-undo-all-cursors)
+
   (add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t)))
   (global-set-key (kbd "C-+") 'spacemacs/scale-up-font)
   (global-set-key (kbd "C--") 'spacemacs/scale-down-font)
