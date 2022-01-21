@@ -454,6 +454,9 @@ you should place your code here."
   ;; Evil Mode
   (evil-define-key 'normal global-map (kbd "C-a") 'evil-numbers/inc-at-pt)
   (evil-define-key 'normal global-map (kbd "C-x") 'evil-numbers/dec-at-pt)
+  (spacemacs/set-leader-keys "gg" 'goto-line)
+  (spacemacs/set-leader-keys "nn" 'evil-show-marks)
+  (spacemacs/set-leader-keys "nx" 'evil-delete-marks)
 
   ;; define some characters to be part of a sympbol depending on the mode
   (add-hook 'emacs-lisp-mode-hook #'(lambda () (modify-syntax-entry ?- "w")))  ; will treat foo-bar as one symbol
