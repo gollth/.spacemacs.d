@@ -31,14 +31,9 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     typescript
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install tmem.
-     ;; ----------------------------------------------------------------
-
      ;; FRAMEWORKS
+     asciidoc
+     multiple-cursors
      helm
      debug
      docker
@@ -50,51 +45,55 @@ values."
             shell-default-term-shell "/usr/bin/zsh"
             shell-default-position 'bottom)
      react
-     ;; LANGUAGES
-     (haskell :variables
-              haskell-enable-hindent-style "johan-tibell")
-     javascript
-     python
-     html
-     rust
-     markdown
-     groovy
-     yaml
-     emacs-lisp
-     better-defaults
      git
-     csharp
      (lsp :variables
-          lsp-enable-symbol-highlighting nil
-          lsp-enable-on-type-formatting nil
-          lsp-enable-indentation nil
-          lsp-enable-file-watchers t
-          lsp-prefer-flymake nil
-          lsp-file-watch-threshold nil
           lsp-auto-guess-root t
           lsp-before-save-edits nil
+          lsp-enable-file-watchers t
+          lsp-enable-indentation nil
+          lsp-enable-on-type-formatting nil
+          lsp-enable-symbol-highlighting nil
+          lsp-file-watch-threshold nil
+          lsp-headerline-breadcrumb-enable t
+          lsp-prefer-flymake nil
+          lsp-ui-doc-border (face-foreground 'default)
+          lsp-ui-doc-delay 0
           lsp-ui-doc-enable nil
           lsp-ui-doc-header t
           lsp-ui-doc-include-signature t
-          lsp-ui-doc-border (face-foreground 'default)
-          lsp-ui-doc-delay 0
           lsp-ui-sideline-enable nil
           lsp-ui-sideline-ignore-duplicate t
           lsp-ui-sideline-show-code-actions t)
+     (auto-completion :variables
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0
+                      auto-completion-private-snippets-directory "~/.spacemacs.d/snippets")
+     (syntax-checking :variables syntax-checking-enable-by-default t)
+
+     ;; LANGUAGES
+     (haskell :variables
+              haskell-enable-hindent t)
+     javascript
+     (typescript :variables
+                 typescript-fmt-tool 'prettier)
+     python
      (c-c++ :variables
             c-c++-backend 'lsp-ccls
             c-c++-adopt-subprojects t
             c-c++-lsp-enable-semantic-highlight t
             c-c++-enable-clang-format-on-save t
             c-c++-default-mode-for-headers 'c++-mode)
-     (auto-completion :variables
-                      auto-completion-return-key-behavior 'complete
-                      auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0
-                      auto-completion-private-snippets-directory "~/.spacemacs.d/snippets")
-     syntax-checking
-     (syntax-checking :variables syntax-checking-enable-by-default t)
-     version-control
+     html
+     protobuf
+     csv
+     go
+     lua
+     rust
+     markdown
+     groovy
+     yaml
+     emacs-lisp
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -109,6 +108,7 @@ values."
      eslint-fix
      el-mock
      xclip
+     prettier-js
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
