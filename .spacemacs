@@ -350,7 +350,7 @@ values."
    dotspacemacs-whitespace-cleanup 'all
 
    ;; Default indentation for Java/C/C++
-   c-basic-offset 4
+   c-basic-offset 2
    ))
 
 (defun dotspacemacs/user-init ()
