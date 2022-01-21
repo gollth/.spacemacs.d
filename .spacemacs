@@ -504,12 +504,7 @@ you should place your code here."
   (require 'ccls)
   (setq ccls-root-files (add-to-list 'ccls-root-files "build/compile_commands.json" t))
   (setq ccls-sem-highlight-method 'font-lock)
-  (setq ccls-initialization-options
-        (list :cache (list :directory (concat (file-name-as-directory spacemacs-cache-directory) ".ccls-cache") )
-              :compilationDatabaseDirectory "build"))
   (setq ccls-executable (file-truename "~/.spacemacs.d/ccls/Release/ccls"))
-  (evil-define-key 'normal global-map (kbd ",k") (lambda () (interactive) (ccls-navigate "L")))
-  (evil-define-key 'normal global-map (kbd ",j") (lambda () (interactive) (ccls-navigate "R")))
 
   ;; Python interpreter
   (setq python-shell-interpreter "ipython")
@@ -538,11 +533,14 @@ you should place your code here."
   (add-to-list 'auto-mode-alist '("\\.js$"     . rjsx-mode))
 
   ;; Autocompletion configuration
+  (global-company-mode)
   (use-package company
     :ensure t
     :config
     (setq company-idle-delay 0)
     (setq company-minimum-prefix-length 2))
+
+  (define-key global-map (kbd "C-SPC") 'company-complete)
 
 
   (add-hook 'rjsx-mode-hook
