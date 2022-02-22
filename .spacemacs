@@ -412,6 +412,12 @@ you should place your code here."
   ;; Ligatures in Fira Font
   (load-file "~/.spacemacs.d/fira-code.el")
 
+  ;; Lingua Franka Mode
+  (load-file "~/.emacs.d/private/lingua-franka/lf-mode.el")
+  (add-to-list 'auto-mode-alist '("\\.lf$" . lf-mode))
+  (setq lsp-lf-executable (file-truename "~/.bin/lfls"))
+  (add-hook 'lf-mode-hook #'(lambda () (lsp 1)))
+
   ;; Set google as default search engine
   (spacemacs/set-leader-keys "ag" 'engine/search-google)
   (setq browse-url-browser-function 'browse-url-generic
