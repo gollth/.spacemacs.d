@@ -511,9 +511,13 @@ you should place your code here."
 
   ;; C/C++ Mode
   (require 'ccls)
-  (setq ccls-root-files (add-to-list 'ccls-root-files "build/compile_commands.json" t))
-  (setq ccls-sem-highlight-method 'font-lock)
-  (setq ccls-executable (file-truename "~/.spacemacs.d/ccls/Release/ccls"))
+  (with-eval-after-load 'ccls
+    (setq ccls-root-files (add-to-list 'ccls-root-files "build/compile_commands.json" t))
+    (setq ccls-sem-highlight-method 'font-lock)
+    (setq ccls-initialization-options
+          (list :cache (list :directory (file-truename (concat (file-name-as-directory spacemacs-cache-directory) ".ccls-cache")))
+                :compilationDatabaseDirectory "build"))
+    (setq ccls-executable (file-truename "~/.spacemacs.d/ccls/Release/ccls")))
 
   ;; Python interpreter
   (setq python-shell-interpreter "ipython")
