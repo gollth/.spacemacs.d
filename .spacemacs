@@ -104,6 +104,8 @@ values."
      cmake-mode
      helm-ros
      helm-catkin
+     helm-evil-markers
+     evil-visual-mark-mode
      exec-path-from-shell
      eslint-fix
      el-mock
@@ -398,6 +400,11 @@ from their values currently sourced in the shell environment (e.g. .bashrc)"
   (exec-path-from-shell-copy-envs spacemacs-ignored-environment-variables)
   (message "ROS environment copied successfully from shell"))
 
+(defun set-marker-a () "Saves current POS to marker a" (interactive) (evil-set-marker ?a) (message "Set Marker A to line %s" (line-number-at-pos)))
+(defun set-marker-b () "Saves current POS to marker b" (interactive) (evil-set-marker ?b) (message "Set Marker A to line %s" (line-number-at-pos)))
+(defun set-marker-d () "Saves current POS to marker c" (interactive) (evil-set-marker ?c) (message "Set Marker A to line %s" (line-number-at-pos)))
+
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -461,7 +468,12 @@ you should place your code here."
   (evil-define-key 'normal global-map (kbd "C-a") 'evil-numbers/inc-at-pt)
   (evil-define-key 'normal global-map (kbd "C-x") 'evil-numbers/dec-at-pt)
   (spacemacs/set-leader-keys "gg" 'goto-line)
-  (spacemacs/set-leader-keys "nn" 'evil-show-marks)
+  (spacemacs/set-leader-keys "na" 'set-marker-a)
+  (spacemacs/set-leader-keys "nn" 'helm-evil-markers)
+  (spacemacs/set-leader-keys "nb" 'set-marker-b)
+  (spacemacs/set-leader-keys "nc" 'set-marker-c)
+  (spacemacs/set-leader-keys "nl" 'evil-show-marks)
+  (spacemacs/set-leader-keys "nt" 'evil-visual-mark-mode)
   (spacemacs/set-leader-keys "nx" 'evil-delete-marks)
 
   ;; define some characters to be part of a sympbol depending on the mode
